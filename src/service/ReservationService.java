@@ -28,8 +28,10 @@ public class ReservationService {
         return null;
     }
     public Reservation reserveARoom(Customer guest,IRoom room,Date checkIn,Date checkOut,  boolean shiftIfUnavailable){
+        if (checkOut.compareTo(checkIn) <= 0) {
+            throw new IllegalArgumentException("Check-out date must be after check-in date.");
+        }
         List<Reservation> roomBookings = reservationStorage.get(room);
-
         if (isAvailable(roomBookings, checkIn, checkOut)) {
             Reservation r = new Reservation(guest, room, checkIn, checkOut);
             roomBookings.add(r);

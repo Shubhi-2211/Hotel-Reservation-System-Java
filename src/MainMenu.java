@@ -14,6 +14,9 @@ public class MainMenu {
     private static final HotelResource hotelResource = new HotelResource();
     private static final Scanner scanner = new Scanner(System.in);
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    static {
+        formatter.setLenient(false);  // 👉 makes invalid dates throw ParseException
+    }
 
     public static void start() {
 
