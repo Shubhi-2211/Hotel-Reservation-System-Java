@@ -63,6 +63,9 @@ public class MainMenu {
             System.out.print("Enter Check-Out Date (dd/MM/yyyy): ");
             Date checkOut = formatter.parse(scanner.nextLine());
 
+            if (checkOut.compareTo(checkIn) <= 0) {
+                throw new IllegalArgumentException("Check-out date must be after check-in date.");
+            }
             // find available rooms
             Collection<IRoom> availableRooms = hotelResource.findARoom(checkIn, checkOut);
 
